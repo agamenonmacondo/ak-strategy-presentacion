@@ -70,7 +70,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
 /* ===== MOBILE RESPONSIVE ===== */
 @media screen and (max-width:768px){
   body{overflow-y:auto;overflow-x:hidden;height:auto}
-  .slide{width:100%;min-height:100vh;height:auto;overflow-y:auto;overflow-x:hidden}
+  .slide,.slide.active{width:100%;min-height:100vh;height:auto;overflow-y:visible;overflow-x:hidden;display:flex!important;flex-direction:column;border-bottom:1px solid rgba(201,169,78,0.15)}
+  .slide::before{position:absolute}
   .cover h1{font-size:36px;letter-spacing:-1px}
   .cover .sub{font-size:22px;margin-bottom:28px}
   .cover .meta{font-size:14px;line-height:1.7}
@@ -105,8 +106,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
   .timeline{gap:12px}
   .tl-content h4{font-size:15px}
   .tl-content p{font-size:12px;line-height:1.5}
-  .nav{bottom:12px;right:12px}
   .slide-counter{bottom:14px;left:12px;font-size:15px}
+  .nav{display:none}
+  .slide-counter{display:none}
 }
 @media screen and (min-width:769px) and (max-width:1024px){
   .header{padding:24px 32px 12px}
