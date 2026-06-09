@@ -67,6 +67,19 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
 .quote{background:linear-gradient(135deg,var(--borgona),#3a0e1a);border-radius:12px;padding:32px 40px;font-family:'Source Serif 4',serif;font-size:24px;color:var(--crema);line-height:1.5;position:relative}
 .quote::before{content:'"';font-family:'Caveat',cursive;font-size:80px;color:var(--dorado);position:absolute;top:-10px;left:16px;opacity:0.3}
 
+/* ── CYCLE DIAGRAM ── */
+.cycle-diagram{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.cycle-block{background:var(--card);border:1px solid rgba(201,169,78,0.15);border-radius:10px;padding:16px 12px;text-align:center;display:flex;flex-direction:column;gap:4px}
+.cycle-block .cb-time{font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:var(--dorado)}
+.cycle-block .cb-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px}
+.cycle-block .cb-val{font-family:'Source Serif 4',serif;font-size:16px;font-weight:600;color:var(--crema)}
+.cycle-block .cb-sub{font-size:11px;color:var(--dim)}
+.cycle-block.active{border-color:var(--dorado);background:rgba(201,169,78,0.08)}
+.cycle-block.gap{border-color:var(--red);background:rgba(239,83,80,0.06)}
+.cycle-block.gap .cb-time{color:var(--red)}
+.cycle-arrow{font-size:24px;color:var(--dorado);text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.cycle-arrow .arrow-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
+
 /* ===== MOBILE RESPONSIVE ===== */
 @media screen and (max-width:768px){
   body{overflow-y:auto;overflow-x:hidden;height:auto}
@@ -109,6 +122,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
   .slide-counter{bottom:14px;left:12px;font-size:15px}
   .nav{display:none}
   .slide-counter{display:none}
+  .cycle-diagram{grid-template-columns:1fr;gap:6px}
+  .cycle-arrow{flex-direction:row;justify-content:center;padding:2px 0}
+  .cycle-block{padding:12px 10px}
+  .cycle-block .cb-time{font-size:17px}
+  .cycle-block .cb-val{font-size:14px}
 }
 @media screen and (min-width:769px) and (max-width:1024px){
   .header{padding:24px 32px 12px}
@@ -132,50 +150,50 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
   <h1>Comando de<br>Rendimiento</h1>
   <div class="sub">Estrategia basada en datos para Attick & Keller</div>
   <div class="meta">
-    <b>Enero — Junio 2026</b> · 13,002 cheques · $3,733M COP<br>
-    Análisis de capacidad, comportamiento y oportunidad<br>
-    <b>5 estrategias</b> con proyección de impacto validada
+    <b>Enero — Junio 2026</b> &middot; 13,002 cheques &middot; $3,733M COP<br>
+    An&aacute;lisis de capacidad, comportamiento y oportunidad<br>
+    <b>5 estrategias</b> con proyecci&oacute;n de impacto validada
   </div>
 </div>
 
-<!-- SLIDE 2: DIAGNÓSTICO — LA BRECHA -->
+<!-- SLIDE 2: DIAGNOSTICO — LA BRECHA -->
 <div class="slide" id="s2">
   <div class="header"><h2>El Problema: Brecha de Capacidad</h2><span class="num">02</span></div>
   <div class="body">
     <div class="kpi-row">
       <div class="kpi"><span class="l">Revenue 6 meses</span><span class="v">$3,733M</span><span class="s">13,002 cheques</span></div>
-      <div class="kpi"><span class="l">Capacidad Vi-Sáb</span><span class="v">$44.5M</span><span class="s">por día</span></div>
-      <div class="kpi"><span class="l">Promedio Lun-Mié</span><span class="v">$11.2M</span><span class="s"><span class="r">−75%</span> vs viernes</span></div>
-      <div class="kpi"><span class="l">Brecha diaria</span><span class="v">$33.3M</span><span class="s">desaprovechados Lun-Mié</span></div>
+      <div class="kpi"><span class="l">Capacidad Vi-S&aacute;b</span><span class="v">$44.5M</span><span class="s">por d&iacute;a</span></div>
+      <div class="kpi"><span class="l">Promedio Lun-Mi&eacute;</span><span class="v">$11.2M</span><span class="s"><span class="r">&minus;75%</span> vs viernes</span></div>
+      <div class="kpi"><span class="l">Brecha diaria</span><span class="v">$33.3M</span><span class="s">desaprovechados Lun-Mi&eacute;</span></div>
     </div>
     <div style="flex:1;display:flex;flex-direction:column;gap:8px;justify-content:center">
-      <p style="font-size:14px;color:var(--muted);margin-bottom:8px">Revenue por día de semana (promedio diario Ene-Jun 2026)</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px">Revenue por d&iacute;a de semana (promedio diario Ene-Jun 2026)</p>
       <div class="bar-row"><span class="lbl">Lunes</span><div class="track"><div class="fill f3" style="width:14%">6.3M</div></div><span class="amt">$6.3M</span></div>
       <div class="bar-row"><span class="lbl">Martes</span><div class="track"><div class="fill f3" style="width:24%">10.6M</div></div><span class="amt">$10.6M</span></div>
-      <div class="bar-row"><span class="lbl">Miércoles</span><div class="track"><div class="fill f2" style="width:37%">16.6M</div></div><span class="amt">$16.6M</span></div>
+      <div class="bar-row"><span class="lbl">Mi&eacute;rcoles</span><div class="track"><div class="fill f2" style="width:37%">16.6M</div></div><span class="amt">$16.6M</span></div>
       <div class="bar-row"><span class="lbl">Jueves</span><div class="track"><div class="fill f2" style="width:62%">27.8M</div></div><span class="amt">$27.8M</span></div>
       <div class="bar-row"><span class="lbl">Viernes</span><div class="track"><div class="fill f1" style="width:99%">44.1M</div></div><span class="amt">$44.1M</span></div>
-      <div class="bar-row"><span class="lbl">Sábado</span><div class="track"><div class="fill f1" style="width:100%">45.0M</div></div><span class="amt">$45.0M</span></div>
+      <div class="bar-row"><span class="lbl">S&aacute;bado</span><div class="track"><div class="fill f1" style="width:100%">45.0M</div></div><span class="amt">$45.0M</span></div>
       <div class="bar-row"><span class="lbl">Domingo</span><div class="track"><div class="fill f3" style="width:33%">14.6M</div></div><span class="amt">$14.6M</span></div>
     </div>
-    <div class="quote" style="font-size:18px">Los lunes operan al <b style="color:var(--dorado)">14%</b> de la capacidad de un viernes. Tres días de la semana generan solo el <b style="color:var(--dorado)">20%</b> del revenue con el <b style="color:var(--dorado)">50%</b> de la infraestructura.</div>
+    <div class="quote" style="font-size:18px">Los lunes operan al <b style="color:var(--dorado)">14%</b> de la capacidad de un viernes. Tres d&iacute;as de la semana generan solo el <b style="color:var(--dorado)">20%</b> del revenue con el <b style="color:var(--dorado)">50%</b> de la infraestructura.</div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &middot; Comando de Rendimiento</div>
 </div>
 
-<!-- SLIDE 3: COMPOSICIÓN DE VENTAS -->
+<!-- SLIDE 3: COMPOSICION DE VENTAS -->
 <div class="slide" id="s3">
-  <div class="header"><h2>De Dónde Viene la Plata</h2><span class="num">03</span></div>
+  <div class="header"><h2>De D&oacute;nde Viene la Plata</h2><span class="num">03</span></div>
   <div class="body">
     <div class="kpi-row">
-      <div class="kpi"><span class="l">Alcohol</span><span class="v">43%</span><span class="s">$1,651M · Cocteles+Licores+Vinos</span></div>
-      <div class="kpi"><span class="l">Comida</span><span class="v">40%</span><span class="s">$1,527M · Platos fuertes</span></div>
-      <div class="kpi"><span class="l">Bebidas sin alcohol</span><span class="v">17%</span><span class="s">$636M · Limonadas, café, cerveza</span></div>
-      <div class="kpi"><span class="l">Margen ponderado</span><span class="v">73%</span><span class="s">mix Bebidas 78% · Cocteles 75% · Comida 69%</span></div>
+      <div class="kpi"><span class="l">Alcohol</span><span class="v">43%</span><span class="s">$1,651M &middot; Cocteles+Licores+Vinos</span></div>
+      <div class="kpi"><span class="l">Comida</span><span class="v">40%</span><span class="s">$1,527M &middot; Platos fuertes</span></div>
+      <div class="kpi"><span class="l">Bebidas sin alcohol</span><span class="v">17%</span><span class="s">$636M &middot; Limonadas, caf&eacute;, cerveza</span></div>
+      <div class="kpi"><span class="l">Margen ponderado</span><span class="v">73%</span><span class="s">mix Bebidas 78% &middot; Cocteles 75% &middot; Comida 69%</span></div>
     </div>
     <div class="grid2" style="flex:1">
       <div style="display:flex;flex-direction:column;gap:8px;justify-content:center">
-        <p style="font-size:14px;color:var(--muted);margin-bottom:4px">Revenue por categoría (6 meses)</p>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:4px">Revenue por categor&iacute;a (6 meses)</p>
         <div class="bar-row"><span class="lbl">Comida</span><div class="track"><div class="fill f2" style="width:100%">40%</div></div><span class="amt">$1,527M</span></div>
         <div class="bar-row"><span class="lbl">Cocteles</span><div class="track"><div class="fill f1" style="width:49%">19%</div></div><span class="amt">$742M</span></div>
         <div class="bar-row"><span class="lbl">Bebidas</span><div class="track"><div class="fill f3" style="width:42%">17%</div></div><span class="amt">$636M</span></div>
@@ -186,14 +204,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
         <p style="font-size:14px;color:var(--muted);margin-bottom:4px">Venta por zona</p>
         <div class="bar-row"><span class="lbl">Tee Pee</span><div class="track"><div class="fill f1" style="width:100%">86%</div></div><span class="amt">$3,193M</span></div>
         <div class="bar-row"><span class="lbl">Keller</span><div class="track"><div class="fill f2" style="width:9%">8%</div></div><span class="amt">$282M</span></div>
-        <div class="bar-row"><span class="lbl">Ático</span><div class="track"><div class="fill f3" style="width:6%">5%</div></div><span class="amt">$176M</span></div>
+        <div class="bar-row"><span class="lbl">&Aacute;tico</span><div class="track"><div class="fill f3" style="width:6%">5%</div></div><span class="amt">$176M</span></div>
         <div class="bar-row"><span class="lbl">Shots</span><div class="track"><div class="fill f3" style="width:3%">2%</div></div><span class="amt">$82M</span></div>
         <p style="font-size:14px;color:var(--muted);margin-top:16px;margin-bottom:4px">Hora pico: 5pm a 9pm</p>
         <div class="kpi" style="padding:12px"><span class="l">Revenue concentrado</span><span class="v">64%</span><span class="s">5pm–9pm genera 2/3 del revenue</span></div>
       </div>
     </div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &middot; Comando de Rendimiento</div>
 </div>
 
 <!-- SLIDE 4: ESTRATEGIA 1 — DOMICILIOS -->
@@ -201,82 +219,84 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
   <div class="header"><h2>Estrategia 1: Marca de Domicilios</h2><span class="num">04</span></div>
   <div class="body">
     <div class="kpi-row">
-      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyección anual</span><span class="v">$60-80M</span><span class="s">Revenue incremental</span></div>
+      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyecci&oacute;n anual</span><span class="v">$60-80M</span><span class="s">Revenue incremental</span></div>
       <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Utilidad</span><span class="v">~$51M</span><span class="s">Margen neto 72%</span></div>
-      <div class="kpi"><span class="l">Rappi actual</span><span class="v">$2.4M</span><span class="s">37 órdenes / 6 meses</span></div>
+      <div class="kpi"><span class="l">Rappi actual</span><span class="v">$2.4M</span><span class="s">37 &oacute;rdenes / 6 meses</span></div>
       <div class="kpi"><span class="l">Ticket Rappi</span><span class="v">$64K</span><span class="s">vs $287K promedio en sitio</span></div>
     </div>
     <div class="grid2" style="flex:1">
       <div class="strat">
-        <span class="tag">Diagnóstico</span>
+        <span class="tag">Diagn&oacute;stico</span>
         <div class="bd">
-          Rappi representa <strong>0.06%</strong> del revenue total — prácticamente inexistente. El ticket domicilios (<strong>$64K</strong>) es <strong>4.5× menor</strong> que en sitio ($287K). La fuerza laboral Lun-Mié opera al <strong>14-37%</strong> de capacidad.
+          Rappi representa <strong>0.06%</strong> del revenue total — pr&aacute;cticamente inexistente. El ticket domicilios (<strong>$64K</strong>) es <strong>4.5&times; menor</strong> que en sitio ($287K). La fuerza laboral Lun-Mi&eacute; opera al <strong>14-37%</strong> de capacidad.
         </div>
       </div>
       <div class="strat">
         <span class="tag">Propuesta</span>
         <div class="bd">
-          Crear marca de domicilios <strong>diferenciada</strong> (no el menú del restaurante). Menú optimizado para delivery — cocinas del Keller, packaging diseñado, precio accesible. Aprovecha inventario y personal existente los lunes a miércoles.
+          Crear marca de domicilios <strong>diferenciada</strong> (no el men&uacute; del restaurante). Men&uacute; optimizado para delivery — cocinas del Keller, packaging dise&ntilde;ado, precio accesible. Aprovecha inventario y personal existente los lunes a mi&eacute;rcoles.
         </div>
       </div>
       <div class="strat">
-        <span class="tag">Simulación</span>
+        <span class="tag">Simulaci&oacute;n</span>
         <div class="bd">
-          <strong>15-20%</strong> adicional sobre el promedio Lun-Mié ($11.2M/día) = <strong>$1.7–2.2M/día</strong> extra. A 3 días × 4.3 semanas/mes = <strong>$22–29M/mes</strong>. Con margen mixto 72% (bebidas+comida domicilio), utilidad neta <strong>~$51M/año</strong>.
+          <strong>15-20%</strong> adicional sobre el promedio Lun-Mi&eacute; ($11.2M/d&iacute;a) = <strong>$1.7–2.2M/d&iacute;a</strong> extra. A 3 d&iacute;as &times; 4.3 semanas/mes = <strong>$22–29M/mes</strong>. Con margen mixto 72% (bebidas+comida domicilio), utilidad neta <strong>~$51M/a&ntilde;o</strong>.
         </div>
       </div>
       <div class="strat">
         <span class="tag">Riesgos</span>
         <div class="bd">
-          Commission Rappi <strong>20-25%</strong> puede erosionar margen. Canibalización baja (mercado domicilios ≠ mercado restaurante). Recomendación: marca propia como canal primario, Rappi como discovery. Meta: <strong>50+ órdenes/mes</strong> en 3 meses.
+          Commission Rappi <strong>20-25%</strong> puede erosionar margen. Canibalizaci&oacute;n baja (mercado domicilios &ne; mercado restaurante). Recomendaci&oacute;n: marca propia como canal primario, Rappi como discovery. Meta: <strong>50+ &oacute;rdenes/mes</strong> en 3 meses.
         </div>
       </div>
     </div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &middot; Comando de Rendimiento</div>
 </div>
 
-<!-- SLIDE 5: ESTRATEGIA 2 — EVENTOS / NETWORKING -->
+<!-- SLIDE 5: ESTRATEGIA 2 — EVENTOS / COMUNIDAD -->
 <div class="slide" id="s5">
   <div class="header"><h2>Estrategia 2: Centro de Comunidad</h2><span class="num">05</span></div>
   <div class="body">
     <div class="kpi-row">
-      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyección anual</span><span class="v">~$540M</span><span class="s">Revenue incremental con +30% halo</span></div>
-      <div class="kpi"><span class="l">Lun-Mié</span><span class="v">14-37%</span><span class="s">de capacidad instalada</span></div>
-      <div class="kpi"><span class="l">Capacidad</span><span class="v">45 mesas</span><span class="s">210 asientos · 135 chq/día ideal</span></div>
-      <div class="kpi"><span class="l">Realidad Lun-Mié</span><span class="v">19-82 chq</span><span class="s">vs 135 capacidad</span></div>
+      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyecci&oacute;n anual</span><span class="v">~$540M</span><span class="s">Revenue incremental con +30% halo</span></div>
+      <div class="kpi"><span class="l">Lun-Mi&eacute;</span><span class="v">14-37%</span><span class="s">de capacidad instalada</span></div>
+      <div class="kpi"><span class="l">Capacidad</span><span class="v">45 mesas</span><span class="s">210 asientos &middot; 135 chq/d&iacute;a ideal</span></div>
+      <div class="kpi"><span class="l">Realidad Lun-Mi&eacute;</span><span class="v">19-82 chq</span><span class="s">vs 135 capacidad</span></div>
     </div>
     <div class="grid2" style="flex:1">
       <div class="strat">
-        <span class="tag">Diagnóstico</span>
+        <span class="tag">Diagn&oacute;stico</span>
         <div class="bd">
-          <strong>Lunes</strong>: 539 cheques en 22 días (24/día). <strong>Martes</strong>: 892 cheques (41/día). Infraestructura disponible: 45 mesas, cocina, bar, personal encendido. La localización y configuración arquitectónica del Keller (sótano íntimo) + Ático es ideal para eventos de 20-30 personas.
+          <strong>Lunes</strong>: 539 cheques en 22 d&iacute;as (24/d&iacute;a). <strong>Martes</strong>: 892 cheques (41/d&iacute;a). Infraestructura disponible: <strong>Tee Pee</strong> (11 mesas, 50 asientos, abierto, versatile) y <strong>Taller</strong> (11 mesas, 54 asientos, instalado para eventos). Ambos espacios son ideales para grupos de 20-30 personas.
         </div>
       </div>
       <div class="strat">
         <span class="tag">Propuesta</span>
         <div class="bd">
-          <strong>3 líneas de activación Lun-Mié:</strong><br>
-          1. <strong>Networking profesional</strong> — afterworks, pitch nights, Meetup tech/creativos<br>
-          2. <strong>Bienestar</strong> — yoga+brunch, talleres de meditación, wine tasting con sommelier<br>
-          3. <strong>Contenido</strong> — podcast en vivo, grabaciones de video, exposiciones de arte rotativas
+          <strong>3 l&iacute;neas de activaci&oacute;n Lun-Mi&eacute;:</strong><br>
+          1. <strong>Networking profesional</strong> — afterworks, pitch nights, Meetup tech/creativos en Tee Pee<br>
+          2. <strong>Bienestar</strong> — yoga+brunch, talleres de meditaci&oacute;n, wine tasting con sommelier en Taller<br>
+          3. <strong>Contenido</strong> — podcast en vivo, grabaciones de video en Keller (s&oacute;tano &iacute;ntimo = estudio natural)
         </div>
       </div>
       <div class="strat">
-        <span class="tag">Simulación</span>
+        <span class="tag">Simulaci&oacute;n</span>
         <div class="bd">
-          2 eventos/semana × 25 personas × $80K ticket × 2 consumiciones = <strong>$8M/semana</strong>. Con efecto halo (+30% de clientes atraídos que consumen regular), proyección <strong>$540M/año</strong>. Costo marginal mínimo — personal e infraestructura ya están.
+          2 eventos/semana &times; 25 personas &times; $80K ticket &times; 2 consumiciones = <strong>$8M/semana</strong>. Con efecto halo (+30% de clientes atra&iacute;dos que consumen regular), proyecci&oacute;n <strong>$540M/a&ntilde;o</strong>. Costo marginal m&iacute;nimo — personal e infraestructura ya est&aacute;n.
         </div>
       </div>
       <div class="strat">
-        <span class="tag">Ventaja competitiva</span>
+        <span class="tag">Espacios</span>
         <div class="bd">
-          El Keller como <strong>estudio de contenido</strong>: streaming, podcast, video. Posicionamiento como hub cultural del norte. Contenido genera marca → marca genera tráfico → tráfico converge Vi-Sáb. <strong>Efecto flywheel</strong>: eventos alimentan redes sociales → redes alimentan reservas fines de semana.
+          <strong>Tee Pee</strong> = espacio abierto para eventos grandes, cenas tem&aacute;ticas, networking.<br>
+          <strong>Taller</strong> = 54 asientos, instalado para talleres y clases.<br>
+          <strong>Keller</strong> = bar y estudio de contenido (streaming, podcast). <em>Las instalaciones del Keller no son adecuadas para eventos sociales</em> — su fortaleza es la intimidad nocturna y la producci&oacute;n de contenido.
         </div>
       </div>
     </div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &amp; Keller &middot; Comando de Rendimiento</div>
 </div>
 
 <!-- SLIDE 6: ESTRATEGIA 3 — COMIDA + BEBIDAS SIN ALCOHOL -->
@@ -284,84 +304,127 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
   <div class="header"><h2>Estrategia 3: Fortalecer Comida y Sin Alcohol</h2><span class="num">06</span></div>
   <div class="body">
     <div class="kpi-row">
-      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyección anual</span><span class="v">~$623M</span><span class="s">Revenue incremental</span></div>
-      <div class="kpi"><span class="l">Comida actual</span><span class="v">40%</span><span class="s">$1,527M · margen 69%</span></div>
-      <div class="kpi"><span class="l">Bebidas s/alc</span><span class="v">17%</span><span class="s">$636M · margen 78%</span></div>
-      <div class="kpi"><span class="l">Alcohol</span><span class="v">43%</span><span class="s">$1,651M · margen mix 73%</span></div>
+      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyecci&oacute;n anual</span><span class="v">~$623M</span><span class="s">Revenue incremental</span></div>
+      <div class="kpi"><span class="l">Comida actual</span><span class="v">40%</span><span class="s">$1,527M &middot; margen 69%</span></div>
+      <div class="kpi"><span class="l">Bebidas s/alc</span><span class="v">17%</span><span class="s">$636M &middot; margen 78%</span></div>
+      <div class="kpi"><span class="l">Alcohol</span><span class="v">43%</span><span class="s">$1,651M &middot; margen mix 73%</span></div>
     </div>
     <div class="grid2" style="flex:1">
       <div class="strat">
-        <span class="tag">Diagnóstico</span>
+        <span class="tag">Diagn&oacute;stico</span>
         <div class="bd">
-          El alcohol domina (43%) pero tiene margen mixto (Vinos <strong>63%</strong>). Comida (40%, margen 69%) y bebidas sin alcohol (17%, margen <strong>78%</strong>) son la oportunidad — más margen por peso. <strong>Pizza Jamón Serrano</strong> es #1 en revenue ($163M) pero la oferta de platos fuertes puede crecer.
+          El alcohol domina (43%) pero tiene margen mixto (Vinos <strong>63%</strong>). Comida (40%, margen 69%) y bebidas sin alcohol (17%, margen <strong>78%</strong>) son la oportunidad — m&aacute;s margen por peso. <strong>Pizza Jam&oacute;n Serrano</strong> es #1 en revenue ($163M) pero la oferta de platos fuertes puede crecer.
         </div>
       </div>
       <div class="strat">
         <span class="tag">Propuesta</span>
         <div class="bd">
           <strong>1. Comida +10%:</strong> Nuevos platos fuertes de autor (aprovechar cocina del Keller), brunch dominguista, pairing menu Vinos+Comida.<br>
-          <strong>2. Bebidas sin alcohol +25%:</strong> Cócteles mocktail premium, limonadas artesanales, café especial — ticket alto con margen <strong>78%</strong>.<br>
-          <strong>3. No-alcohol como gateway:</strong> Quien pide mocktail se queda 40 min más.
+          <strong>2. Bebidas sin alcohol +25%:</strong> C&oacute;cteles mocktail premium, limonadas artesanales, caf&eacute; especial — ticket alto con margen <strong>78%</strong>.<br>
+          <strong>3. No-alcohol como gateway:</strong> Quien pide mocktail se queda 40 min m&aacute;s.
         </div>
       </div>
       <div class="strat">
-        <span class="tag">Simulación</span>
+        <span class="tag">Simulaci&oacute;n</span>
         <div class="bd">
           Comida +10% = <strong>+$152.7M</strong>/6meses<br>
           Bebidas sin alcohol +25% = <strong>+$159M</strong>/6meses<br>
-          Total incremental: <strong>$312M/6meses = $623M/año</strong><br>
-          Con margen mixto 73.5%: utilidad adicional <strong>~$458M/año</strong>
+          Total incremental: <strong>$312M/6meses = $623M/a&ntilde;o</strong><br>
+          Con margen mixto 73.5%: utilidad adicional <strong>~$458M/a&ntilde;o</strong>
         </div>
       </div>
       <div class="strat">
-        <span class="tag">Por qué funciona</span>
+        <span class="tag">Por qu&eacute; funciona</span>
         <div class="bd">
-          <strong>Mayor margen por peso vendido:</strong> cada $1 en bebidas sin alcohol genera $0.78 de utilidad vs $0.73 en alcohol. Los no-bebedores Gastan menos pero <strong>permanecen más tiempo</strong> y traen acompañantes que sí beben. Cero competencia en la zona: nadie ofrece cócteles mocktail premium.
+          <strong>Mayor margen por peso vendido:</strong> cada $1 en bebidas sin alcohol genera $0.78 de utilidad vs $0.73 en alcohol. Los no-bebedores gastan menos pero <strong>permanecen m&aacute;s tiempo</strong> y traen acompa&ntilde;antes que s&iacute; beben. Cero competencia en la zona: nadie ofrece c&oacute;cteles mocktail premium.
         </div>
       </div>
     </div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &middot; Comando de Rendimiento</div>
 </div>
 
-<!-- SLIDE 7: ESTRATEGIA 4 — KELLER NOCTURNO -->
+<!-- SLIDE 7: ESTRATEGIA 4 — KELLER NOCTURNO + SEGUNDO CICLO -->
 <div class="slide" id="s7">
-  <div class="header"><h2>Estrategia 4: Keller Nocturno Vie-Sáb</h2><span class="num">07</span></div>
+  <div class="header"><h2>Estrategia 4: Segundo Ciclo Nocturno</h2><span class="num">07</span></div>
   <div class="body">
     <div class="kpi-row">
-      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyección anual</span><span class="v">~$195M</span><span class="s">Con sinergia KINDER +15%</span></div>
-      <div class="kpi"><span class="l">Keller actual</span><span class="v">$282M</span><span class="s">8% del revenue · 892 chq</span></div>
-      <div class="kpi"><span class="l">Servicio promedio</span><span class="v">43 min</span><span class="s">vs 126 min Tee Pee</span></div>
-      <div class="kpi"><span class="l">Ticket Keller</span><span class="v">$316K</span><span class="s">vs $291K Tee Pee</span></div>
+      <div class="kpi highlight" style="border-color:var(--dorado)"><span class="l">Proyecci&oacute;n anual</span><span class="v">~$195M</span><span class="s">+30% Keller + sinergia KINDER</span></div>
+      <div class="kpi"><span class="l">Keller actual</span><span class="v">$282M</span><span class="s">8% del revenue &middot; 892 chq</span></div>
+      <div class="kpi"><span class="l">Keller post-10pm</span><span class="v">68%</span><span class="s">del revenue Keller es nocturno</span></div>
+      <div class="kpi"><span class="l">Ticket Keller</span><span class="v">$316K</span><span class="s">vs $291K Tee Pee &middot; 43 min servicio</span></div>
     </div>
+
+    <!-- CYCLE DIAGRAM — the visual centerpiece -->
+    <div style="margin:4px 0">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:10px;text-align:center">Flujo Viernes-S&aacute;bado: dos ciclos, un solo espacio</p>
+      <div class="cycle-diagram">
+        <div class="cycle-block active">
+          <div class="cb-time">5pm &ndash; 9pm</div>
+          <div class="cb-label">Primer ciclo</div>
+          <div class="cb-val">$2,392M</div>
+          <div class="cb-sub">64% del revenue total</div>
+        </div>
+        <div class="cycle-arrow">
+          <span>&#8594;</span>
+          <span class="arrow-label">transici&oacute;n</span>
+        </div>
+        <div class="cycle-block gap">
+          <div class="cb-time">9pm &ndash; 10pm</div>
+          <div class="cb-label">VAC&Iacute;O</div>
+          <div class="cb-val">-30% chq</div>
+          <div class="cb-sub">La gente se va, mesas quedan</div>
+        </div>
+      </div>
+      <div style="height:6px"></div>
+      <div class="cycle-diagram">
+        <div class="cycle-block" style="border-color:var(--green);background:rgba(76,175,80,0.08)">
+          <div class="cb-time" style="color:var(--green)">10pm &ndash; 2:30am</div>
+          <div class="cb-label">Segundo ciclo</div>
+          <div class="cb-val">Oportunidad</div>
+          <div class="cb-sub">Keller nocturno &middot; bar independiente</div>
+        </div>
+        <div class="cycle-arrow">
+          <span>&#8594;</span>
+          <span class="arrow-label">relevo</span>
+        </div>
+        <div class="cycle-block active">
+          <div class="cb-time">Keller</div>
+          <div class="cb-label">YA FUNCIONA</div>
+          <div class="cb-val">$282M</div>
+          <div class="cb-sub">892 chq &middot; ticket $316K</div>
+        </div>
+      </div>
+    </div>
+
     <div class="grid2" style="flex:1">
       <div class="strat">
-        <span class="tag">Diagnóstico</span>
+        <span class="tag">Diagn&oacute;stico</span>
         <div class="bd">
-          El Keller genera solo <strong>8% del revenue</strong> ($282M) con el ticket más alto ($316K) y el servicio más rápido (43 min). Su naturaleza de sótano-íntimo es <strong>subaprovechada</strong>: cierra temprano cuando A&K está en su pico (64% del revenue entre 5pm y 9pm).
+          Entre 9pm y 10pm, <strong>-30% de los cheques se van</strong>. Las mesas se liberan pero el restaurante NO activa segundo relevo. El Keller ya es nocturno (<strong>68% del revenue post-10pm</strong>) pero cierra temprano cuando podr&iacute;a extender hasta 2:30am. Ticket alto ($316K), servicio r&aacute;pido (43 min) = <strong>rotaci&oacute;n alta</strong> = m&aacute;s revenue por metro cuadrado.
         </div>
       </div>
       <div class="strat">
         <span class="tag">Propuesta</span>
         <div class="bd">
-          <strong>Segunda convocatoria nocturna:</strong> viernes y sábado de <strong>8pm a 2:30am</strong>. El Keller como bar independiente con identidad propia. DJ set, cócteles de autor, ambientación nocturna. Público que ya salió de Tee Pee se queda bajando — <strong>funnel natural</strong>.
+          <strong>Segundo ciclo nocturno Vie-S&aacute;b:</strong> el Keller como bar independiente de <strong>10pm a 2:30am</strong>. DJ set, c&oacute;cteles de autor, ambientaci&oacute;n nocturna. El p&uacute;blico del primer ciclo (5-9pm) que a&uacute;n quiere seguir → <strong>baja al Keller</strong>. Nuevo p&uacute;blico nocturno entra directamente. <strong>Funnel natural</strong>: cenaste arriba → sigues abajo.
         </div>
       </div>
       <div class="strat">
-        <span class="tag">Simulación</span>
+        <span class="tag">Simulaci&oacute;n</span>
         <div class="bd">
-          Si Keller incrementa <strong>30%</strong> sobre base actual = <strong>+$85M/6meses</strong>. Con sinergia KINDER (cruzado con otra sede del grupo) +15%: <strong>$195M/año</strong> proyectado. El ticket alto ($316K) y servicio rápido (43 min) = rotación alta = más revenue por metro cuadrado.
+          Keller +30% sobre base = <strong>+$85M/6meses</strong>. Sinergia KINDER +15%: <strong>$195M/a&ntilde;o</strong> proyectado. Cada noche de segundo ciclo: <strong>30-40 cheques extra &times; $316K = $9.5-12.7M</strong> por noche. Solo 2 noches/semana &times; 4.3 semanas = <strong>$82-109M/mes</strong>. Personal e infraestructura ya est&aacute;n.
         </div>
       </div>
       <div class="strat">
         <span class="tag">Sinergia KINDER</span>
         <div class="bd">
-          Entrada a KINDER incluida en cover del Keller nocturno. <strong>Flujo dual:</strong> quien quiere seguir → KINDER. Quien prefiere intimidad → Keller. Modelo probado en bares de Medellín (salas divididas, doble entrada). <strong>Cada visitante nocturno gasta $316K de ticket</strong> — alto valor.
+          Entrada a KINDER incluida en cover del Keller nocturno. <strong>Flujo dual:</strong> quien quiere seguir → KINDER. Quien prefiere intimidad → Keller. Modelo probado en bares de Medell&iacute;n (salas divididas, doble entrada). <strong>Cada visitante nocturno gasta $316K de ticket</strong> — alto valor.
         </div>
       </div>
     </div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &middot; Comando de Rendimiento</div>
 </div>
 
 <!-- SLIDE 8: RESUMEN -->
@@ -372,7 +435,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
       <div class="kpi" style="border-color:var(--dorado);background:rgba(201,169,78,0.06)">
         <span class="l">Revenue actual anual</span>
         <span class="v" style="color:var(--muted)">$7,467M</span>
-        <span class="s">Ene-Jun 2026 x 2</span>
+        <span class="s">Ene-Jun 2026 &times; 2</span>
       </div>
       <div class="kpi highlight" style="border-color:var(--dorado);background:rgba(201,169,78,0.08)">
         <span class="l">Potencial incremental</span>
@@ -381,38 +444,38 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
       </div>
     </div>
     <div style="flex:1;display:flex;flex-direction:column;gap:12px;justify-content:center">
-      <p style="font-size:15px;color:var(--muted);text-align:center">Proyeccion de impacto por estrategia (anual)</p>
+      <p style="font-size:15px;color:var(--muted);text-align:center">Proyecci&oacute;n de impacto por estrategia (anual)</p>
       <div class="impact-grid">
         <div class="impact-card">
           <div class="ic-label">Domicilios</div>
           <div class="ic-num">$60-80M</div>
-          <div class="ic-sub">Revenue · Margen 72%</div>
+          <div class="ic-sub">Revenue &middot; Margen 72%</div>
           <div class="ic-sub" style="color:var(--green)">~$51M utilidad</div>
         </div>
         <div class="impact-card">
-          <div class="ic-label">Eventos Lun-Mie</div>
+          <div class="ic-label">Eventos Lun-Mi&eacute;</div>
           <div class="ic-num">~$540M</div>
-          <div class="ic-sub">Revenue · +30% halo</div>
+          <div class="ic-sub">Revenue &middot; +30% halo</div>
           <div class="ic-sub" style="color:var(--green)">Mayor efecto flywheel</div>
         </div>
         <div class="impact-card">
           <div class="ic-label">Comida + Sin Alcohol</div>
           <div class="ic-num">~$623M</div>
-          <div class="ic-sub">+10% comida · +25% bebid</div>
+          <div class="ic-sub">+10% comida &middot; +25% bebid</div>
           <div class="ic-sub" style="color:var(--green)">~$458M utilidad</div>
         </div>
         <div class="impact-card">
-          <div class="ic-label">Keller Nocturno</div>
+          <div class="ic-label">2do Ciclo Nocturno</div>
           <div class="ic-num">~$195M</div>
-          <div class="ic-sub">+30% Keller · KINDER +15%</div>
-          <div class="ic-sub" style="color:var(--green)">Alto ticket · Rapido</div>
+          <div class="ic-sub">+30% Keller &middot; KINDER +15%</div>
+          <div class="ic-sub" style="color:var(--green)">Alto ticket &middot; R&aacute;pido</div>
         </div>
       </div>
       <div style="background:var(--card);border:1px solid var(--dorado);border-radius:10px;padding:20px;margin-top:8px">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div>
-            <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Priorizacion recomendada</div>
-            <div style="font-size:20px;font-family:'Source Serif 4',serif;color:var(--crema)">Estrategia 3 (comida+bebidas) tiene <span style="color:var(--dorado)">mayor ROI</span> — sin inversion de infraestructura</div>
+            <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Priorizaci&oacute;n recomendada</div>
+            <div style="font-size:20px;font-family:'Source Serif 4',serif;color:var(--crema)">Estrategia 3 (comida+bebidas) tiene <span style="color:var(--dorado)">mayor ROI</span> — sin inversi&oacute;n de infraestructura</div>
           </div>
           <div style="text-align:right">
             <div style="font-family:'Source Serif 4',serif;font-size:36px;color:var(--dorado);line-height:1">73%</div>
@@ -422,48 +485,48 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
       </div>
     </div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &middot; Comando de Rendimiento</div>
 </div>
 
 <!-- SLIDE 9: PROXIMOS PASOS -->
 <div class="slide" id="s9">
-  <div class="header"><h2>Proximos Pasos</h2><span class="num">09</span></div>
+  <div class="header"><h2>Pr&oacute;ximos Pasos</h2><span class="num">09</span></div>
   <div class="body" style="justify-content:center;gap:28px">
     <div class="timeline">
       <div class="tl-item">
         <div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot" style="background:var(--dorado)"></div><div class="tl-line" style="height:60px"></div></div>
         <div class="tl-content">
-          <h4>Semana 1-2: Menu de Domicilios</h4>
-          <p>Disenar menu delivery diferenciado (8-12 platos). Registrar marca en Rappi con fotografia profesional. Meta: 50 ordenes/mes en 3 meses.</p>
+          <h4>Semana 1-2: Men&uacute; de Domicilios</h4>
+          <p>Dise&ntilde;ar men&uacute; delivery diferenciado (8-12 platos). Registrar marca en Rappi con fotograf&iacute;a profesional. Meta: 50 &oacute;rdenes/mes en 3 meses.</p>
         </div>
       </div>
       <div class="tl-item">
         <div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-line" style="height:60px"></div></div>
         <div class="tl-content">
           <h4>Semana 2-4: Mocktails + Comida Nueva</h4>
-          <p>Lanzar 5 cocteles sin alcohol premium. Agregar 3 platos fuertes de autor. Promocion cruzada: mocktail + plato = descuento 15%.</p>
+          <p>Lanzar 5 c&oacute;cteles sin alcohol premium. Agregar 3 platos fuertes de autor. Promoci&oacute;n cruzada: mocktail + plato = descuento 15%.</p>
         </div>
       </div>
       <div class="tl-item">
         <div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-line" style="height:60px"></div></div>
         <div class="tl-content">
-          <h4>Semana 3-6: Eventos Lun-Mie</h4>
-          <p>Programar 2 eventos semanales (networking martes, bienestar miercoles). Alianza con Meetup, Camara de Comercio. Instagram content del Keller como espacio.</p>
+          <h4>Semana 3-6: Eventos Lun-Mi&eacute;</h4>
+          <p>Programar 2 eventos semanales (networking martes, bienestar mi&eacute;rcoles) en Tee Pee y Taller. Alianza con Meetup, C&aacute;mara de Comercio. Instagram content del Keller como espacio.</p>
         </div>
       </div>
       <div class="tl-item">
         <div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot" style="background:var(--ladrillo)"></div></div>
         <div class="tl-content">
-          <h4>Mes 2-3: Keller Nocturno</h4>
-          <p>Soft launch viernes 8pm-1am. Identidad visual propia. DJ set + cocteles de autor. Cross-promo con KINDER para flujo nocturno.</p>
+          <h4>Mes 2-3: Segundo Ciclo Nocturno</h4>
+          <p>Soft launch viernes 10pm-2:30am. Keller como bar con identidad propia. DJ set + c&oacute;cteles de autor. Cross-promo con KINDER para flujo nocturno. Meta: 30-40 cheques extra/noche.</p>
         </div>
       </div>
     </div>
     <div class="quote" style="margin-top:16px;font-size:20px">
-      El dato es claro: 3 dias generan <span style="color:var(--dorado)">4x menos</span> que viernes y sabado, con la misma infraestructura encendida. No se trata de trabajar mas, sino de <span style="color:var(--dorado)">activar lo que ya existe</span>.
+      El dato es claro: 3 d&iacute;as generan <span style="color:var(--dorado)">4&times; menos</span> que viernes y s&aacute;bado, con la misma infraestructura encendida. No se trata de trabajar m&aacute;s, sino de <span style="color:var(--dorado)">activar lo que ya existe</span>.
     </div>
   </div>
-  <div class="footer">Attick & Keller · Comando de Rendimiento</div>
+  <div class="footer">Attick & Keller &middot; Comando de Rendimiento</div>
 </div>
 
 <!-- NAVIGATION -->
